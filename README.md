@@ -1,4 +1,4 @@
-### HealthyHome
+## HealthyHome
 ===========
 
 ACORN Canada is a membership based community organization that focuses on social justice and leadership development in low and moderate income communities across Canada. Our main project areas include: Healthy Homes, Remittance Justice, Digital Access To Opportunities, Raising the Minimum Wage and more.
