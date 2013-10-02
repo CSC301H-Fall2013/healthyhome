@@ -1,0 +1,31 @@
+1. As Liam (a current resident), I want to have a living-comfortable rating system, so that the future residence will know the satisfaction of this area.
+
+
+2. As Luigi (a current resident), I want to be able to increase the priority of a compliant, so that if my house issue has not been solved in 3 months, I want to get Acorn employee’s attention.
+
+
+3. As Jenny (a future tenant), I want to find out the history issues on my future apartment, so that I can decide whether to move in or not.
+
+
+4. As Jenny (a future tenant), I want to searching the apartment based on rental price and living-comfortable level, so that I can use less money to get a better apartment.
+
+
+5. As Jenny (a future tenant), I want to seek a condo nearly school and that place has never been complained before, so that I can focus on study instead of solving the potential living issue.
+
+
+6. As Aaliya, I want to view the complaints on city heat-map, so that I start dealing the area that has most problem with.
+From conversations with Judy: 'We '
+
+7. As Aaliya, I want to view the issues based on the priority level, so that I can help the people that with extremely urgent issue.
+
+
+8. As Aaliya, I want the older resolved issues to reduce intensity on the map and eventually disappear so that more recent and important issues will be displayed on the map.
+
+From conversations with Judy: 'We want apartments or houses that solve their issues to slowly disappear from the interactive map.'
+
+
+9. As Aaliya, I want the website have quick-link function, so that I easily can find out which government department I should to call or email to solve a particular problem.
+
+
+As Jane, I want to be able to rank 
+
