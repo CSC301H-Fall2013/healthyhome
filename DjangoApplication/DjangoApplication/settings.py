@@ -108,9 +108,7 @@ ROOT_URLCONF = 'DjangoApplication.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'DjangoApplication.wsgi.application'
 
-BASE_DIR = '/Users/shandheap/Documents/Programming/CSC301H1/healthyhome/DjangoApplication/'
-
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates/')]
+TEMPLATE_DIRS = ['D:\\home\\site\\wwwroot\\\\DjangoApplication\\templates/']
 
 INSTALLED_APPS = (
     'django.contrib.auth',
