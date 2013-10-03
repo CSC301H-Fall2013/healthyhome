@@ -1,0 +1,13 @@
+<h1>All Complaints</h1>
+<ul>
+	{% for complaint in complaint_list %}
+		<pre>
+{{ complaint.id }}.	Address: {{ complaint.address }}
+	Category: {{ complaint.category }}
+
+	<!--<a href="{% url "edit" complaint.id %}">edit</a>		 <a href="{% url "delete" complaint.id %}">delete</a> -->
+		</pre>
+	{% endfor %}
+</ul>
+
+<!-- <a href="{% url "new" %}">New</a> -->
