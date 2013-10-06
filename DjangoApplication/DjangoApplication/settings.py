@@ -1,5 +1,8 @@
 # Django settings for DjangoApplication project.
 
+import os
+
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -9,10 +12,12 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+ROOT_PATH = os.getcwd()
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'D:\\home\\site\\wwwroot\\DjangoApplication\\complaint_system_complaint',                      # Or path to database file if using sqlite3.
+        'NAME': ROOT_PATH + '/complaint_system_complaint',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'healthyhome',
         'PASSWORD': 'fiber',
@@ -107,7 +112,7 @@ ROOT_URLCONF = 'DjangoApplication.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'DjangoApplication.wsgi.application'
 
-TEMPLATE_DIRS = ['D:\\home\\site\\wwwroot\\\\DjangoApplication\\templates\\']
+TEMPLATE_DIRS = [ ROOT_PATH + '/templates/']
 
 INSTALLED_APPS = (
     'django.contrib.auth',
