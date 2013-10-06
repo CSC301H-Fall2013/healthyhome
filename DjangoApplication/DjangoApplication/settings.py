@@ -15,7 +15,7 @@ MANAGERS = ADMINS
 ROOT_PATH = os.getcwd()
 
 # Check if the path given is Azure, if it is provide the folder path
-if !os.path.exists(ROOT_PATH + '/templates/complaint_system/'):
+if not os.path.exists(ROOT_PATH + '/templates/complaint_system/'):
     ROOT_PATH = 'D:/home/site/wwwroot/DjangoApplication/'
 
 DATABASES = {
