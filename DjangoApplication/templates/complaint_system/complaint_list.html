@@ -1,9 +1,0 @@
-<h1>All Complaints</h1>
-<ul>
-	{% for complaint in complaint_list %}
-		<pre>
-{{ complaint.id }}.	Address: {{ complaint.address }}
-	Category: {{ complaint.category }}
-		</pre>
-	{% endfor %}
-</ul>
