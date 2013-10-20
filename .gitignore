@@ -10,4 +10,4 @@ Thumbs.db
 
 # Python generated files #
 ######################
-.pyc
+*.pyc
