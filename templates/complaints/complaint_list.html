@@ -7,7 +7,12 @@
             {% for complaint in complaint_list %}
                 <pre>
 {{ complaint.id }}.	Address: {{ complaint.address }}
+	City: {{complaint.city}}
+	Province: {{complaint.province}}
 	Category: {{ complaint.category }}
+	Name: {{complaint.name}}
+	Number: {{complaint.number}}
+	Email: {{complaint.email}}
 		</pre>
             {% endfor %}
         </ul>
