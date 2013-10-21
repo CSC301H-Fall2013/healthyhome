@@ -1,7 +1,7 @@
 from django import forms
 from django.forms.widgets import CheckboxSelectMultiple
 
-from complaint_system.models import Complaint
+from complaints.models import Complaint
 
 class AddComplaint(forms.ModelForm):
     address = forms.CharField(max_length=250, required = True)
