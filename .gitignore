@@ -8,6 +8,11 @@
 ehthumbs.db
 Thumbs.db
 
+# Intellij files #
+######################
+*.iml
+.idea/
+
 # Python generated files #
 ######################
-*.pyc
+.pyc
