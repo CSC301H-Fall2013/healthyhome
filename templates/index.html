@@ -1,11 +1,14 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block added_js %}
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<script src='{% static "js/homepage-map.js" %}'></script>
+{% endblock %}
 
 {% block content %}
-
-    <div>
-        <iframe src="http://mapsengine.google.com/map/embed?mid=z9KGk9Xq16l8.kQF3FLgJrCeM" width="800" height="480"></iframe>
-    </div>
-
+    <div id="map-canvas"></div>
 {% endblock %}
 
 
