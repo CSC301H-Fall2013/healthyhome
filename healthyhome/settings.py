@@ -1,7 +1,6 @@
 # Django settings for healthyhome project.
 import os
 
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -20,7 +19,7 @@ if not os.path.exists(ROOT_PATH + '/templates/complaints/'):
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': ROOT_PATH + '/db/complaints.sqlite3', # Or path to database file if using sqlite3.
+        'NAME': os.path.join(ROOT_PATH, "db/complaints.sqlite3"), # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'healthyhome',
         'PASSWORD': 'fiber',
@@ -116,7 +115,7 @@ ROOT_URLCONF = 'healthyhome.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'healthyhome.wsgi.application'
 
-TEMPLATE_DIRS = (ROOT_PATH + '/templates/')
+TEMPLATE_DIRS = os.path.join(ROOT_PATH, "templates")
 
 INSTALLED_APPS = (
     'django.contrib.auth',
