@@ -3,14 +3,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 function initialize() {
 
-	var myLatlng = new google.maps.LatLng(43.663277,-79.396992);
 	var bounds = new google.maps.LatLngBounds();
 	var mapOptions = {
-		zoom: 13,
-		center: myLatlng,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
-
 	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
 	//TODO: replace mock data with API call  
@@ -47,6 +43,7 @@ function initialize() {
 	}	
 	];
 
+	//Place buildings on the map
 	$.each(buildingList, function(index, value) {
 		var latLong = new google.maps.LatLng(value.lat, value.lng);
 		bounds.extend(latLong);
