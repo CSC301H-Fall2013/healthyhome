@@ -2,7 +2,7 @@ import unittest
 from django.test import Client, TestCase
 from complaints.models import Complaint
 
-# Contains all tests for the Complaints model
+# Contains all tests for the Complaints class
 class ComplaintTestCase(TestCase):
     def setUp(self):
 
@@ -37,7 +37,7 @@ class ComplaintTestCase(TestCase):
         except:
             self.assertTrue(True)   # Test if code throws exception
 
-# Contains all tests for the Buildings model
+# Contains all tests for the Buildings class
 class BuildingTestCase(TestCase):
     def setUp(self):
 
@@ -64,7 +64,7 @@ class BuildingTestCase(TestCase):
         except:
             self.assertTrue(True)   # Test if code throws exception
 
-# Contains all tests for the Submission model
+# Contains all tests for the Submission class
 class SubmissionTestCase(TestCase):
     def setUp(self):
 
@@ -99,7 +99,7 @@ class SubmissionTestCase(TestCase):
         except:
             self.assertTrue(True)   # Test if code throws exception
 
-# Contains all tests for the User model
+# Contains all tests for the User class
 class UserTestCase(TestCase):
     def setUp(self):
 
@@ -145,23 +145,29 @@ class UserTestCase(TestCase):
 
 # Contains all the tests regarding POST requests to our web application
 class ClientTestCase(TestCase):
-    def test_complaint_links(self):
+    def test_links(self):
         # Act as a client and check if response statuses are normal
-        response = self.client.get('/complaints/')
+        response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
-        response = self.client.get('/complaints/new')
+        response = self.client.get('/report/')
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get('/report/verify/')
         self.assertEqual(response.status_code, 200)
 
     def test_valid_complaint_POST(self):
         # Act as a client and send valid data via POST
-        response = self.client.post('/complaints/new',
-                                    {'address': '101 Spadina Avenue, Toronto, Ontario, M4S 1X3', 'category': 'Heating'})
+        response = self.client.post('/report/',
+                                    {'lat_long': '[37.42426708029149, -122.0840722197085]', 'type': 'Cockroaches'})
         self.assertEqual(response.status_code, 302) # Check if response is valid
 
-        #def test_invalid_complaint_POST(self):
+        response = self.client.post('/report/verify/',
+                                    {'address': '[43.646844, -79.376932]', 'type': 'Mice'})
+        self.assertEqual(response.status_code, 302)
+
+    def test_invalid_complaint_POST(self):
         # Act as a client and send invalid data via POST
-        #string = 'test' * 100
-        #response = self.client.get('/complaints/new')
-        #response = self.client.post('/complaints/new', {'address': string, 'category': 'Mold'})
-        #self.assertNotEqual(response.status_code, 200) # Check the response is invalid
+        response = self.client.post('/report/', {'address': '[43.646844, -79.376932]', 'type': 'Unknown'})
+        self.assertNotEqual(response.status_code, 200) # Check the response is invalid
+        response = self.client.post('/report/verify/', {'address': '[43.646844, -79.376932, 53]', 'type': 'Mice'})
+        self.assertNotEqual(response.status_code, 200) # Check the response is invalid
 
