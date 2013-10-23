@@ -5,7 +5,10 @@ function initialize() {
 
 	var bounds = new google.maps.LatLngBounds();
 	var mapOptions = {
-		mapTypeId: google.maps.MapTypeId.ROADMAP
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		disableDefaultUI: true,
+		panControl: true,
+  		zoomControl: true
 	}
 	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
