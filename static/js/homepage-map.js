@@ -50,11 +50,14 @@ function initialize() {
 	$.each(buildingList, function(index, value) {
 		var latLong = new google.maps.LatLng(value.lat, value.lng);
 		bounds.extend(latLong);
-		new google.maps.Marker({
+		var marker = new google.maps.Marker({
 			position: latLong,
 			map: map,
 			title: value.title
 		});
+		google.maps.event.addListener(marker, 'click', function() {
+	    	window.location = "/building/" + value.id;
+  		});
 	});
 	map.fitBounds(bounds);
 	map.panToBounds(bounds);
