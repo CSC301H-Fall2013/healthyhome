@@ -15,7 +15,7 @@
 
 
     <script src="{% static "js/vendor/custom.modernizr.js" %}"></script>
-    
+
     {% block added_js %}{% endblock %}
 
 </head>
@@ -24,7 +24,12 @@
 <div class="row">
     <div class="large-12 columns">
         <h2>Healthyhome</h2>
-        <hr />
+        <nav class="breadcrumbs">
+            <a href="/">Home</a>
+            <a href="/report/">Report</a>
+            <a href="/building/1">Buildings</a>
+        </nav>
+        <hr style="visibility:hidden;"/>
     </div>
 </div>
 

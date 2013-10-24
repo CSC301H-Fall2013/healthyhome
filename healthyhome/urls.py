@@ -9,7 +9,7 @@ urlpatterns = patterns('',
                        # Complaints
                        url(r'^report/', include('complaints.urls')),
 
-                       # Buildings
+                       # Buildings - this is currently redirecting to same page, will change in next sprint
                        url(r'^building/[0-9]$', views.index.as_view(), name="building"),
 
                        #Index

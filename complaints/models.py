@@ -1,5 +1,6 @@
 from django.db import models
 
+# This is the Complaint model, other models will be implemented here in Sprint 2.
 class Complaint(models.Model):
 	CATEGORIES = (
 		('Bed Bugs', 'Bed Bugs'),
