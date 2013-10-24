@@ -171,3 +171,14 @@ class ClientTestCase(TestCase):
         response = self.client.post('/report/verify/', {'address': '[43.646844, -79.376932, 53]', 'type': 'Mice'})
         self.assertNotEqual(response.status_code, 200) # Check the response is invalid
 
+    def test_api_call(self):
+        # Act as a client and send GET to api
+        Building.objects.create(lat_long=[43.656730, -79.395077], complaints=[])
+        Building.objects.create(lat_long=[45.756730, -79.395077], complaints=[])
+        Building.objects.create(lat_long=[53.658730, -89.395077], complaints=[])
+        response = self.client.get('/api/v1/buildings.json')
+
+        # Check if the JSON contains the correct data
+        self.assertEqual(response[0][0], 43.656730)
+        self.assertEqual(response[1][1], -79.395077)
+        self.assertEqual(response[2][0], 53.658730)
