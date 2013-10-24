@@ -1,30 +1,26 @@
-# Django settings for healthyhome project.
-import os
+import os.path
+
+PROJECT_DIR = os.path.abspath(__file__ + '/../../')
+ROOT_PATH = os.getcwd()
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-# ('Your Name', 'your_email@example.com'),
+    # ('Your Name', 'your_email@example.com'),
 )
 
 MANAGERS = ADMINS
 
-ROOT_PATH = os.getcwd()
-
-# Check if the path given is Azure, if it is provide the folder path
-if not os.path.exists(ROOT_PATH + '/templates/complaints/'):
-    ROOT_PATH = 'D:/home/site/wwwroot/healthyhome/'
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(ROOT_PATH, "db/complaints.sqlite3"), # Or path to database file if using sqlite3.
+        'NAME': 'db/complaints.sqlite3',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': 'healthyhome',
-        'PASSWORD': 'fiber',
-        'HOST': '', # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '', # Set to empty string for default.
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',                      # Set to empty string for default.
     }
 }
 
@@ -75,10 +71,10 @@ STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
 # Additional locations of static files
-# Put strings here, like "/home/html/static" or "C:/www/django/static".
-# Always use forward slashes, even on Windows.
-# Don't forget to use absolute paths, not relative paths.
 STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
     os.path.join(ROOT_PATH, "static"),
 )
 
@@ -87,17 +83,17 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'ojpa+ibu$kid06w7co-svof@d7b+q7xyz+8e2rgg+ti!qx^8!_'
+SECRET_KEY = '8lwg0_f!ze8=c)lh-zpzz76lbgicwq*t6zyh!t%ej@u&f+ys^l'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-    #     'django.template.loaders.eggs.Loader',
+#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -115,7 +111,12 @@ ROOT_URLCONF = 'healthyhome.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'healthyhome.wsgi.application'
 
-TEMPLATE_DIRS = os.path.join(ROOT_PATH, "templates")
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_DIR, 'templates')
+)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
