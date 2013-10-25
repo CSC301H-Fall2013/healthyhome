@@ -4,7 +4,7 @@ from complaints.models import Complaint
 
 class ComplaintAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Complaint Location', {'fields': ['address']}),
+        #('Complaint Location', {'fields': ['address']}),
         #('Complaint Category', {'fields': ['category']}),
     ]
 

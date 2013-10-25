@@ -6,13 +6,9 @@
         <ul>
             {% for complaint in complaint_list %}
                 <pre>
-{{ complaint.id }}.	Address: {{ complaint.address }}
-	City: {{complaint.city}}
-	Province: {{complaint.province}}
-	Category: {{ complaint.category }}
-	Name: {{complaint.name}}
-	Number: {{complaint.number}}
-	Email: {{complaint.email}}
+{{ complaint.id }}.	Lat: {{ complaint.lat }}
+	Long: {{complaint.long}}
+	Type: {{complaint.type}}
 		</pre>
             {% endfor %}
         </ul>

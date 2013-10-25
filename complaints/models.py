@@ -1,6 +1,6 @@
 from django.db import models
+import datetime
 
-# This is the Complaint model, other models will be implemented here in Sprint 2.
 class Complaint(models.Model):
 	CATEGORIES = (
 		('Bed Bugs', 'Bed Bugs'),
@@ -13,4 +13,37 @@ class Complaint(models.Model):
 		('Mould', 'Mould'),
 		('Other', 'Other'),
 	)
-	address = models.CharField(max_length=250)
+
+	lat = models.FloatField()
+	long = models.FloatField()
+	type = models.CharField(max_length=200)
+
+	def __unicode__(self):
+		return self.type
+
+class Building(models.Model):
+	id = models.CharField(max_length=200, primary_key=True)
+	lat = models.FloatField()
+	long = models.FloatField()
+	type = models.CharField(max_length=25, choices=Complaint.CATEGORIES)
+
+	def __unicode__(self):
+		return (self.lat, self.long)
+
+class Submission(models.Model):
+	id = models.CharField(max_length=200, primary_key=True)
+	lat = models.FloatField()
+	long = models.FloatField()
+	type = models.CharField(max_length=25, choices=Complaint.CATEGORIES)
+	time_created = models.DateField(auto_now_add=True)
+
+	def __unicode__(self):
+		return (self.lat, self.long)
+
+class User(models.Model):
+	name = models.CharField(max_length=50)
+	email = models.EmailField()
+	phone_number = models.CharField(max_length=12)
+
+	def __unicode__(self):
+		return self.name
