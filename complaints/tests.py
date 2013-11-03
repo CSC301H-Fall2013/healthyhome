@@ -1,5 +1,4 @@
-import unittest
-from django.test import Client, TestCase
+from django.test import TestCase
 from complaints.models import Complaint
 
 # Contains all tests for the Complaints class

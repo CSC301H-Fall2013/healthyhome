@@ -2,9 +2,9 @@
 {% load staticfiles %}
 
 {% block content %}
-<form action="" method="post">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<input type="submit" value="Submit Complaint" />
-</form>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit Complaint"/>
+    </form>
 {% endblock %}
