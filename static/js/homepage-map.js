@@ -93,6 +93,15 @@ function initialize() {
             checked: true
         });
 
+        // Hide/show the appropriate markers
+        checkbox.change(function() {
+            var markers = categoryMap[category];
+            console.log(markers);
+            markers.forEach(function(marker) {
+                marker.setMap(checkbox.is(":checked") ? map : null);
+            });
+        });
+
         label.append(checkbox, category);
         label.appendTo(categoryContainer);
     });
