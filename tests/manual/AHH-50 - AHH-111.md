@@ -12,3 +12,4 @@
 		1. Make sure the map appears on the preview page for complaint submission
 	2. Check correctness for the map tag
 		2.  the map should show up with correct address tag
+		
