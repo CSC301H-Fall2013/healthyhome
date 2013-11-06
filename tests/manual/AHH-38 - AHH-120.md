@@ -5,7 +5,7 @@
 	1. The map appears with different colour
 
 * **Setup**
-	1. Go to the home page at http://acornhh.herokuapp.com/
+	1. Go to the home page at acornhh.herokuapp.com
 
 * **Test process**
 	1. Check whether the map exists
