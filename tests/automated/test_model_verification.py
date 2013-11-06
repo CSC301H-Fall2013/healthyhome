@@ -1,5 +1,6 @@
 from django.test import TestCase
-from complaints.models import Complaint
+from complaints.models import Verification
+from complaints.models import Submission
 
 class VerificationTestCase(TestCase):
 	def setUp(self):

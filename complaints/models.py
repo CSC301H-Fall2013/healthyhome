@@ -3,15 +3,15 @@ from django.db import models
 
 class Complaint(models.Model):
     CATEGORIES = (
-    ('Bed Bugs', 'Bed Bugs'),
-    ('Cockroaches', 'Cockroaches'),
-    ('Mice', 'Mice'),
-    ('Heating', 'Heating'),
-    ('Plumbing', 'Plumbing'),
-    ('Elevator Not Working', 'Elevator Not Working'),
-    ('Repair Order Not Followed', 'Repair Order Not Followed'),
-    ('Mould', 'Mould'),
-    ('Other', 'Other'),
+        ('Bed Bugs', 'Bed Bugs'),
+        ('Cockroaches', 'Cockroaches'),
+        ('Mice', 'Mice'),
+        ('Heating', 'Heating'),
+        ('Plumbing', 'Plumbing'),
+        ('Elevator Not Working', 'Elevator Not Working'),
+        ('Repair Order Not Followed', 'Repair Order Not Followed'),
+        ('Mould', 'Mould'),
+        ('Other', 'Other'),
     )
 
     lat = models.FloatField()
@@ -51,13 +51,15 @@ class User(models.Model):
     def __unicode__(self):
         return self.name
 
+
 class Verification(models.Model):
-	def __init__(self, lat, long, type)
-	self.lat = models.FloatField()
-	self.long = models.FloatField()
-	self.type = models.CharField(max_length=25, choices=Complaint.CATEGORIES)
-	self.time_created = models.DateField(auto_now_add=True)
+    def __init__(self, lat, long, type):
+        self.lat = models.FloatField()
+        self.long = models.FloatField()
+        self.type = models.CharField(max_length=25, choices=Complaint.CATEGORIES)
+        self.time_created = models.DateField(auto_now_add=True)
+
 
 def __unicode__(self):
-	return (self.time_created)
+    return (self.time_created)
 
