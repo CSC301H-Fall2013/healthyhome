@@ -3,6 +3,6 @@ from django.views.generic import TemplateView
 
 urlpatterns = patterns('',
                        url(r'^$', 'complaints.views.report'),
-                       url(r'^verify/$', TemplateView.as_view(template_name='complaint/verify.html'),
+                       url(r'^verify/$', TemplateView.as_view(template_name='complaints/verify.html'),
                            name="verify"),
 )

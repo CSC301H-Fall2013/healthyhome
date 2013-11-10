@@ -15,27 +15,39 @@ class index(ListView):
 def report(request):
     # sticks in a POST or renders empty form
     form = ComplaintForm(request.POST or None)
-    if form.is_valid():
-        form_query = form.cleaned_data
-        #complaint = form.save()
+    is_invalid = False
 
-        # Query the Google Maps API and return the result JSON
-        map_address = '+'.join(str(form_query['address']).split())
-        map_city = '+'.join(str(form_query['city']).split())
-        map_prov = '+'.join(str(form_query['province']).split())
-        result = urllib2.urlopen(
-            'http://maps.googleapis.com/maps/api/geocode/json?address=' + map_address + ',+' + map_city + ',+' + map_prov + '&sensor=true')
-        content = result.read()
-        content_json = json.loads(content) # Creates a json object that we can query easily
-        # Check if the result is an invalid address
-        if content_json["status"] == "ZERO_RESULTS":
-            return render(request, 'complaint/submit.html', {'form': form})
-        else:
+    if form.is_valid():
+        location = lookup_location(form.cleaned_data)
+
+        if location:
             complaint = form.save(commit=False)
-            complaint.lat = content_json["results"][0]["geometry"]["location"]["lat"]
-            complaint.long = content_json["results"][0]["geometry"]["location"]["lng"]
+            complaint.lat = location["results"][0]["geometry"]["location"]["lat"]
+            complaint.long = location["results"][0]["geometry"]["location"]["lng"]
             complaint.save()
             return redirect('/building/1')
-            #complaint.save()
-            #return redirect(complaints)
-    return render(request, 'complaint/submit.html', {'form': form})
+        else:
+            is_invalid = True
+
+    return render(request, 'complaints/submit.html', {'form': form, 'is_invalid': is_invalid})
+
+
+def lookup_location(data):
+    """
+    Return the location of the address specified in data as a JSON object. If the address
+    is invalid, return the empty string.
+    @param data:
+    @return:
+    """
+    address = '+'.join(str(data['address']).split())
+    city = '+'.join(str(data['city']).split())
+    province = '+'.join(str(data['province']).split())
+
+    result = urllib2.urlopen(
+        'http://maps.googleapis.com/maps/api/geocode/json?address=' +
+        address + ',+' + city + ',+' + province + '&sensor=true')
+    result = json.loads(result.read())
+
+    if result['status'] == 'ZERO_RESULTS':
+        result = ''
+    return result
