@@ -3,15 +3,15 @@ from django.db import models
 
 class Complaint(models.Model):
     CATEGORIES = (
-        ('Bed Bugs', 'Bed Bugs'),
-        ('Cockroaches', 'Cockroaches'),
-        ('Mice', 'Mice'),
-        ('Heating', 'Heating'),
-        ('Plumbing', 'Plumbing'),
-        ('Elevator Not Working', 'Elevator Not Working'),
-        ('Repair Order Not Followed', 'Repair Order Not Followed'),
-        ('Mould', 'Mould'),
-        ('Other', 'Other'),
+        ('BB', 'Bed Bugs'),
+        ('CR', 'Cockroaches'),
+        ('MI', 'Mice'),
+        ('HE', 'Heating'),
+        ('PB', 'Plumbing'),
+        ('EL', 'Elevator Not Working'),
+        ('RO', 'Repair Order Not Followed'),
+        ('MO', 'Mold'),
+        ('OT', 'Other'),
     )
 
     lat = models.FloatField()
@@ -29,7 +29,7 @@ class Building(models.Model):
     type = models.CharField(max_length=25, choices=Complaint.CATEGORIES)
 
     def __unicode__(self):
-        return (self.lat, self.long)
+        return self.lat, self.long
 
 
 class Submission(models.Model):
@@ -40,7 +40,7 @@ class Submission(models.Model):
     time_created = models.DateField(auto_now_add=True)
 
     def __unicode__(self):
-        return (self.lat, self.long)
+        return self.lat, self.long
 
 
 class User(models.Model):
@@ -61,5 +61,5 @@ class Verification(models.Model):
 
 
 def __unicode__(self):
-    return (self.time_created)
+    return self.time_created
 

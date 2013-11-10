@@ -1,7 +1,7 @@
 from django.test import TestCase
 from complaints.models import Complaint
 
-# Contains all tests for the Complaints class
+
 class ComplaintTestCase(TestCase):
     def setUp(self):
 
