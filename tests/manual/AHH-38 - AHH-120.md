@@ -1,6 +1,11 @@
 ## AHH-38 - AHH-120
 #### Test change colour of markers on the map based on the number of complaints in building
 
+* **Marker Color Meaning**
+	1. a building with 1 to 3 issues complaint, marker color will be green
+	2. a building with 4 to 6 issues complaint, marker color will be yellow
+	3. a building with 7 to infinite issues complaint, marker color will be red
+
 * **Success criteria**
 	1. The map appears with different colour
 
@@ -8,7 +13,11 @@
 	1. Go to the home page at acornhh.herokuapp.com
 
 * **Test process**
-	1. Check whether the map exists
-		1. Make sure the map appears on the home page
-	2. Check whether the colour correctness
-		2. make sure the map's colour is correct
+	1. Create a building with one issue complaint
+		1. Make sure the marker color is green
+	2. Create another complaint with three issues for that building
+		2. make sure the marker color is yellow
+	3. Create another complaint with one issues for that building
+		3. make sure the marker color is yellow
+	4. Create another complaint with three issues for that building
+		4. make sure the marker color is red
