@@ -61,6 +61,17 @@ function initialize() {
             map: map,
             title: building.title
         });
+
+        // set marker color base on the complaints number
+        var complaintNum = building.categories.length;
+        if (complaintNum >= 7) {
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+        } else if (complaintNum >= 4) {
+             marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+        } else {
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+        }
+
         google.maps.event.addListener(marker, 'click', function () {
             window.location = "/building/" + building.id;
         });
