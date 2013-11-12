@@ -48,8 +48,7 @@ class Building(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.id:
-            # Newly created object, so set slug
-            self.slug = slugify(self.name)
+            self.slug = slugify(self.name)  # Newly created object, so set slug
 
         super(Building, self).save(*args, **kwargs)
 
