@@ -1,65 +1,60 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 
 
 class Complaint(models.Model):
-    CATEGORIES = (
-        ('BB', 'Bed Bugs'),
-        ('CR', 'Cockroaches'),
-        ('MI', 'Mice'),
-        ('HE', 'Heating'),
-        ('PB', 'Plumbing'),
-        ('EL', 'Elevator Not Working'),
-        ('RO', 'Repair Order Not Followed'),
-        ('MO', 'Mold'),
-        ('OT', 'Other'),
+    BED_BUGS = 'BB'
+    COCKROACHES = 'CR'
+    MICE = 'MI'
+    HEATNG = 'HE'
+    PLUMBING = 'PB'
+    ELEVATOR = 'EV'
+    REPAIR_ORDER = 'RO'
+    MOLD = 'MO'
+    OTHER = 'OT'
+
+    CATEGORY_CHOICES = (
+        (BED_BUGS, 'Bed Bugs'),
+        (COCKROACHES, 'Cockroaches'),
+        (MICE, 'Mice'),
+        (HEATNG, 'Heating'),
+        (PLUMBING, 'Plumbing'),
+        (ELEVATOR, 'Elevator Not Working'),
+        (REPAIR_ORDER, 'Repair Order Not Followed'),
+        (MOLD, 'Mold'),
+        (OTHER, 'Other'),
     )
 
-    lat = models.FloatField()
-    long = models.FloatField()
-    type = models.CharField(max_length=200)
+    bid = models.ForeignKey('Building')
+    category = models.CharField(max_length=2, choices=CATEGORY_CHOICES)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return self.type
+        return timestamp.strftime('%d %b, %Y') + ' ' + str(self.category)
 
 
 class Building(models.Model):
-    id = models.CharField(max_length=200, primary_key=True)
-    lat = models.FloatField()
-    long = models.FloatField()
-    type = models.CharField(max_length=25, choices=Complaint.CATEGORIES)
+    # Name for the building
+    name = models.CharField(max_length=150)
+    slug = models.SlugField(max_length=150)
+
+    # Street number, Street name and Unit number is stored in civic_address
+    civic_address = models.CharField(max_length=150)
+    city = models.CharField(max_length=50)
+    province = models.CharField(max_length=50)
+    
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    
+    def save(self, *args, **kwargs):
+        if not self.id:
+            # Newly created object, so set slug
+            self.slug = slugify(self.name)
+
+        super(Building, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return '/building/{0}/{1}/'.format(self.id, self.slug)
 
     def __unicode__(self):
-        return self.lat, self.long
-
-
-class Submission(models.Model):
-    id = models.CharField(max_length=200, primary_key=True)
-    lat = models.FloatField()
-    long = models.FloatField()
-    type = models.CharField(max_length=25, choices=Complaint.CATEGORIES)
-    time_created = models.DateField(auto_now_add=True)
-
-    def __unicode__(self):
-        return self.lat, self.long
-
-
-class User(models.Model):
-    name = models.CharField(max_length=50)
-    email = models.EmailField()
-    phone_number = models.CharField(max_length=12)
-
-    def __unicode__(self):
-        return self.name
-
-
-class Verification(models.Model):
-    def __init__(self, lat, long, type):
-        self.lat = models.FloatField()
-        self.long = models.FloatField()
-        self.type = models.CharField(max_length=25, choices=Complaint.CATEGORIES)
-        self.time_created = models.DateField(auto_now_add=True)
-
-
-def __unicode__(self):
-    return self.time_created
-
+        return self.title
