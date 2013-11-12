@@ -23,17 +23,17 @@ class ComplaintTestCase(TestCase):
         )
 
         Complaint.objects.create(
-            bid=1,
+            building_id=1,
             category='BB',
         )
 
         Complaint.objects.create(
-            bid=1,
+            building_id=1,
             category='HE',
         )
 
         Complaint.objects.create(
-            bid=1,
+            building_id=1,
             category='MO',
         )
 
@@ -61,7 +61,7 @@ class ComplaintTestCase(TestCase):
 
         """
         try:
-            Complaint.objects.create(bid=1, category='IN')
+            Complaint.objects.create(building_id=1, category='IN')
             invalid_category = False    # Code should never reach this point
         except:
             invalid_category = True     # Test if code throws exception
@@ -74,9 +74,9 @@ class ComplaintTestCase(TestCase):
 
         """
         try:
-            Complaint.objects.create(bid=2, category='PB')
-            invalid_bid = True  # Code should never reach this point
+            Complaint.objects.create(building_id=2, category='PB')
+            invalid_building_id = True      # Code should never reach this point
         except:
-            invalid_bid = False # Test if code throws exception
+            invalid_building_id = False     # Test if code throws exception
 
-        self.assertTrue(invalid_bid)
+        self.assertTrue(invalid_building_id)
