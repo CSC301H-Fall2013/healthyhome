@@ -7,10 +7,10 @@ from complaints.models import Complaint
 class ComplaintForm(forms.ModelForm):
     class Meta:
         model = Complaint
-        fields = ['type']
+        fields = ['category']
 
     address = forms.CharField(label='Address', max_length=250, required=True)
     city = forms.CharField(label='City', max_length=250, required=True)
     province = forms.CharField(label='Province', max_length=250, required=True)
 
-    type = forms.MultipleChoiceField(choices=Complaint.CATEGORIES, widget=forms.CheckboxSelectMultiple(), required=True)
+    category = forms.MultipleChoiceField(choices=Complaint.CATEGORY_CHOICES, widget=forms.CheckboxSelectMultiple(), required=True)

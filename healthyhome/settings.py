@@ -136,6 +136,8 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     # Healthyhome
     'complaints',
+    # API
+    'tastypie',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

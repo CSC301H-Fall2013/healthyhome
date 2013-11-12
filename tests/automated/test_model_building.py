@@ -6,22 +6,21 @@ class BuildingTestCase(TestCase):
     """ Tests for the Building model.
     """
     def setUp(self):
-        self.b1_name = 'The University of Toronto',
-        self.b1_civic_address = '27 King\'s College Circle',
-        self.b1_city = 'Toronto',
-        self.b1_province = 'Ontario',
-        self.b1_latitude = 43.6611024,
+        self.b1_name = 'The University of Toronto'
+        self.b1_civic_address = '27 King\'s College Circle'
+        self.b1_city = 'Toronto'
+        self.b1_province = 'Ontario'
+        self.b1_latitude = 43.6611024
         self.b1_longitude = -79.39592909999999
 
-        self.b2_name = '#32 27 King\'s College Circle',
-
+        self.b2_name = '#32 27 King\'s College Circle'
         Building.objects.create(
             name=self.b1_name,
             civic_address=self.b1_civic_address,
             city=self.b1_city,
             province=self.b1_province,
             latitude=self.b1_latitude,
-            longitude=self.b1_longitude,
+            longitude=self.b1_longitude
         )
 
         Building.objects.create(
@@ -30,7 +29,7 @@ class BuildingTestCase(TestCase):
             city=self.b1_city,
             province=self.b1_province,
             latitude=self.b1_latitude,
-            longitude=self.b1_longitude,
+            longitude=self.b1_longitude
         )
 
     def test_existence(self):
