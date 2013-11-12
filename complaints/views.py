@@ -4,7 +4,7 @@ import json     # Encode and Decode JSON
 from django.views.generic import ListView
 from django.shortcuts import redirect, render, get_object_or_404
 
-from complaints.models import Building
+from complaints.models import Building, Complaint
 from complaints.forms import ComplaintForm
 
 
@@ -16,6 +16,12 @@ class BuildingView(ListView):
     def get_queryset(self):
         building = get_object_or_404(Building, id__iexact=self.args[0])
         return Building.objects.filter(building=building)
+
+    def get_context_data(self, **kwargs):
+        # Call the super implementation first to get a context
+        context = super(BuildingView, self).get_context_data(**kwargs)
+        context['complaint_list'] = Complaint.objects.filter(id=self.args[0])
+        return context
 
 
 def report(request):
