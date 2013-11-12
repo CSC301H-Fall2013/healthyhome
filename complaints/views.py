@@ -2,14 +2,20 @@ import urllib2  # Open URLs in python
 import json     # Encode and Decode JSON
 
 from django.views.generic import ListView
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 
-from complaints.models import Complaint
+from complaints.models import Building
 from complaints.forms import ComplaintForm
 
 
-class index(ListView):
-    model = Complaint
+class BuildingView(ListView):
+
+    context_object_name = 'building'
+    template_name = 'complaints/building_page.html'
+
+    def get_queryset(self):
+        building = get_object_or_404(Building, id__iexact=self.args[0])
+        return Building.objects.filter(building=building)
 
 
 def report(request):
