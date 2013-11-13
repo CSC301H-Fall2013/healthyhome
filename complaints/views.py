@@ -15,7 +15,7 @@ class BuildingView(ListView):
 
     def get_queryset(self):
         building = get_object_or_404(Building, id__iexact=self.args[0])
-        return Building.objects.filter(building=building)
+        return Building.objects.filter(id=self.args[0])
 
     def get_context_data(self, **kwargs):
         # Call the super implementation first to get a context
