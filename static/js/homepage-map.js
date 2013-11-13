@@ -64,9 +64,9 @@ function initialize() {
 
         // set marker color base on the complaints number
         var complaintNum = building.categories.length;
-        if (complaintNum >= 7) {
+        if (complaintNum >= 4) {
             marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-        } else if (complaintNum >= 4) {
+        } else if (complaintNum >= 2) {
              marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
         } else {
             marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
