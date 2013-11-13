@@ -5,6 +5,12 @@ from form_utils.forms import BetterForm
 
 # This specifies the fields that are in the complaint form
 class ComplaintForm(BetterForm):
+    # Group fields into fieldsets.
+    class Meta:
+        fieldsets = [('address', {'fields': ['civic', 'city', 'province']}),
+                     ('complaints', {'fields': ['bed_bugs', 'cockroaches', 'mice', 'heating', 'plumbing',
+                                                'elevator', 'repair_order', 'mold', 'other']})]
+
     # Address for the complaints.
     civic = forms.CharField(label='Address', max_length=250, required=True)
     city = forms.CharField(label='City', max_length=250, required=True)
@@ -21,8 +27,13 @@ class ComplaintForm(BetterForm):
     mold = forms.BooleanField(required=False)
     other = forms.BooleanField(required=False)
 
-    class Meta:
-        fieldsets = [('address', {'fields': ['civic', 'city', 'province']}),
-                     ('complaints', {'fields': ['bed_bugs', 'cockroaches', 'mice', 'heating', 'plumbing',
-                                                'elevator', 'repair_order', 'mold', 'other']})]
+    def clean(self):
+        """
+        Hook for doing any extra form-wide cleaning after Field.clean() been
+        called on every field. Any ValidationError raised by this method will
+        not be associated with a particular field; it will have a special-case
+        association with the field named '__all__'.
+        """
+        #todo: define how to clean forms.
+        return self.cleaned_data
 
