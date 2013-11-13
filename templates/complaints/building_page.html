@@ -2,3 +2,21 @@
         The corresponding QuerySet of complaints for that building
         is complaint_list
 -->
+
+{% extends "base.html" %}
+
+{% block content %}
+    {% for element in building %}
+    <h3>{{ element.name }}</h3>
+        <ul>
+        <pre>
+{{ element.id }}.   {% for complaint in complaint_list %}
+                    <ul>
+                    {{ complaint.category }}
+                    </ul>
+                    {% endfor %}
+		</pre>
+        </ul>
+    {% endfor %}
+
+{% endblock %}
