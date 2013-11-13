@@ -5,18 +5,43 @@
 
 {% extends "base.html" %}
 
-{% block content %}
-    {% for element in building %}
-    <h3>{{ element.name }}</h3>
-        <ul>
-        <pre>
-{{ element.id }}.   {% for complaint in complaint_list %}
-                    <ul>
-                    {{ complaint.category }}
-                    </ul>
-                    {% endfor %}
-		</pre>
-        </ul>
-    {% endfor %}
 
+
+
+{% load staticfiles %}
+
+
+{% block added_js %}
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 {% endblock %}
+
+{% block content %}
+            <div>
+
+                <img class="float right" src="http://maps.googleapis.com/maps/api/staticmap?center={{ building.latitude }},{{ building.longitude}}&zoom=16&size=400x400&markers={{ building.latitude }},{{ building.longitude }}&sensor=false"/>
+                <h3>{{building.name}}</h3>
+                <h5>{{building.civic_address}}</h5>
+
+                <table>
+                    {% for key, value in categories.items %}
+                    <tr>
+                        <td>{{key}}</td>
+                        <td>{{value}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+
+
+    </div>
+    <div>
+        <h4>Comments</h4>
+
+    </div>
+{% endblock %}
+
+
+
+
+

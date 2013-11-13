@@ -19,7 +19,7 @@ urlpatterns = patterns('',
    url(r'^report/', include('complaints.urls')),
 
    # Buildings - this is currently redirecting to same page, will change in next sprint
-   url(r'^building/(\d+)$', views.BuildingView.as_view(), name="building"),
+   url(r'^building/(\d+)$','complaints.views.building'),
 
    #Index
    url(r'^$', TemplateView.as_view(template_name='index.html'), name="index"),

@@ -13,16 +13,28 @@ class Complaint(models.Model):
     MOLD = 'MO'
     OTHER = 'OT'
 
+    CATEGORY_NAMES = {
+        BED_BUGS : 'Bed Bugs',
+        COCKROACHES : 'Cockroaches',
+        MICE : 'Mice',
+        HEATNG : 'Heating',
+        PLUMBING : 'Plumbing',
+        ELEVATOR : 'Elevator Not Working',
+        REPAIR_ORDER : 'Repair Order Not Followed',
+        MOLD : 'Mold',
+        OTHER : 'Other'
+    }
+
     CATEGORY_CHOICES = (
-        (BED_BUGS, 'Bed Bugs'),
-        (COCKROACHES, 'Cockroaches'),
-        (MICE, 'Mice'),
-        (HEATNG, 'Heating'),
-        (PLUMBING, 'Plumbing'),
-        (ELEVATOR, 'Elevator Not Working'),
-        (REPAIR_ORDER, 'Repair Order Not Followed'),
-        (MOLD, 'Mold'),
-        (OTHER, 'Other'),
+        (BED_BUGS, CATEGORY_NAMES[BED_BUGS]),
+        (COCKROACHES, CATEGORY_NAMES[COCKROACHES]),
+        (MICE, CATEGORY_NAMES[MICE]),
+        (HEATNG, CATEGORY_NAMES[HEATNG]),
+        (PLUMBING, CATEGORY_NAMES[PLUMBING]),
+        (ELEVATOR, CATEGORY_NAMES[ELEVATOR]),
+        (REPAIR_ORDER, CATEGORY_NAMES[REPAIR_ORDER]),
+        (MOLD, CATEGORY_NAMES[MOLD]),
+        (OTHER, CATEGORY_NAMES[OTHER])
     )
 
     building = models.ForeignKey('Building')

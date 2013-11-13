@@ -7,23 +7,6 @@ from django.shortcuts import redirect, render, get_object_or_404
 from complaints.models import Building, Complaint
 from complaints.forms import ComplaintForm
 
-
-class BuildingView(ListView):
-
-    context_object_name = 'building'
-    template_name = 'complaints/building_page.html'
-
-    def get_queryset(self):
-        building = get_object_or_404(Building, id__iexact=self.args[0])
-        return Building.objects.filter(id=self.args[0])
-
-    def get_context_data(self, **kwargs):
-        # Call the super implementation first to get a context
-        context = super(BuildingView, self).get_context_data(**kwargs)
-        context['complaint_list'] = Complaint.objects.filter(building_id=self.args[0])
-        return context
-
-
 def report(request):
     # sticks in a POST or renders empty form
     form = ComplaintForm(request.POST or None)
@@ -43,6 +26,19 @@ def report(request):
 
     return render(request, 'complaints/submit.html', {'form': form, 'is_invalid': is_invalid})
 
+def building(request, id):
+    # sticks in a POST or renders empty form
+    selected_building = Building.objects.get(id=id)
+    complaints = Complaint.objects.filter(building_id=id)
+    categories = {}
+    for complaint in complaints:
+        name = Complaint.CATEGORY_NAMES[complaint.category]
+        if name in categories:
+            categories[name] += 1
+        else:
+            categories[name] = 1 
+
+    return render(request, 'complaints/building_page.html', {'categories' : categories, 'building' : selected_building})
 
 def lookup_location(data):
     """
