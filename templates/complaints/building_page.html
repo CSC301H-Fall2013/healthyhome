@@ -1,12 +1,4 @@
-<!--    The building object that you can use here is called building
-        The corresponding QuerySet of complaints for that building
-        is complaint_list
--->
-
 {% extends "base.html" %}
-
-
-
 
 {% load staticfiles %}
 
@@ -16,27 +8,39 @@
 {% endblock %}
 
 {% block content %}
-            <div>
+    <div id="contentArea">
+        <!-- Static map -->
+        <img class="float right" src="http://maps.googleapis.com/maps/api/staticmap?center={{ building.latitude }},{{ building.longitude}}&zoom=16&size=400x400&markers={{ building.latitude }},{{ building.longitude }}&sensor=false"/>
 
-                <img class="float right" src="http://maps.googleapis.com/maps/api/staticmap?center={{ building.latitude }},{{ building.longitude}}&zoom=16&size=400x400&markers={{ building.latitude }},{{ building.longitude }}&sensor=false"/>
-                <h3>{{building.name}}</h3>
-                <h5>{{building.civic_address}}</h5>
+        <!-- Building info -->
+        <h3>{{building.name}}</h3>
+        <h5>{{building.civic_address}}</h5>
 
-                <table>
-                    {% for key, value in categories.items %}
-                    <tr>
-                        <td>{{key}}</td>
-                        <td>{{value}}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-
-            </div>
-
-
+        <!-- Complaints -->
+        <table>
+            {% for key, value in categories.items %}
+            <tr>
+                <td>{{key}}</td>
+                <td>{{value}}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
-    <div>
+
+    <!-- Comment Section -->
+    <div id="comments">
         <h4>Comments</h4>
+            <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    var disqus_shortname = 'healthyhome'; // required: replace example with your forum shortname
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
     </div>
 {% endblock %}
