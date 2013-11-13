@@ -2,9 +2,9 @@
 #### Test change colour of markers on the map based on the number of complaints in building
 
 * **Marker Color Meaning**
-	1. a building with 1 to 3 issues complaint, marker color will set to green
-	2. a building with 4 to 6 issues complaint, marker color will set to yellow
-	3. a building with 7 to infinite issues complaint, marker color set to red
+	1. a building with 1 issue complaint, marker color will set to green
+	2. a building with 2 to 3 issues complaint, marker color will set to yellow
+	3. a building with 4 or more issues complaint, marker color set to red
 
 * **Success criteria**
 	1. The map appears with different colour
