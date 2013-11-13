@@ -131,6 +131,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
+    'django.contrib.formtools',
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
@@ -138,6 +139,8 @@ INSTALLED_APPS = (
     'complaints',
     # API
     'tastypie',
+    # Forms
+    'form_utils',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

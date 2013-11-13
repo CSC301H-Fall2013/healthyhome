@@ -1,3 +1,14 @@
+/* Form */
+form .row .form-complaint-type {
+    margin-bottom: 10px;
+}
+
+form .form-submit {
+    text-align: center;
+}
+
+
+/* Maps */
 #map-canvas {
     height: 500px;
     margin: 0px;
@@ -26,8 +37,6 @@
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     -khtml-border-radius: 8px;
-}
-
 }
 
 .category {

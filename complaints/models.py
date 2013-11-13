@@ -6,7 +6,7 @@ class Complaint(models.Model):
     BED_BUGS = 'BB'
     COCKROACHES = 'CR'
     MICE = 'MI'
-    HEATNG = 'HE'
+    HEATING = 'HE'
     PLUMBING = 'PB'
     ELEVATOR = 'EV'
     REPAIR_ORDER = 'RO'
@@ -14,22 +14,22 @@ class Complaint(models.Model):
     OTHER = 'OT'
 
     CATEGORY_NAMES = {
-        BED_BUGS : 'Bed Bugs',
-        COCKROACHES : 'Cockroaches',
-        MICE : 'Mice',
-        HEATNG : 'Heating',
-        PLUMBING : 'Plumbing',
-        ELEVATOR : 'Elevator Not Working',
-        REPAIR_ORDER : 'Repair Order Not Followed',
-        MOLD : 'Mold',
-        OTHER : 'Other'
+        BED_BUGS: 'Bed Bugs',
+        COCKROACHES: 'Cockroaches',
+        MICE: 'Mice',
+        HEATING: 'Heating',
+        PLUMBING: 'Plumbing',
+        ELEVATOR: 'Elevator Not Working',
+        REPAIR_ORDER: 'Repair Order Not Followed',
+        MOLD: 'Mold',
+        OTHER: 'Other'
     }
 
     CATEGORY_CHOICES = (
         (BED_BUGS, CATEGORY_NAMES[BED_BUGS]),
         (COCKROACHES, CATEGORY_NAMES[COCKROACHES]),
         (MICE, CATEGORY_NAMES[MICE]),
-        (HEATNG, CATEGORY_NAMES[HEATNG]),
+        (HEATING, CATEGORY_NAMES[HEATING]),
         (PLUMBING, CATEGORY_NAMES[PLUMBING]),
         (ELEVATOR, CATEGORY_NAMES[ELEVATOR]),
         (REPAIR_ORDER, CATEGORY_NAMES[REPAIR_ORDER]),
@@ -54,10 +54,10 @@ class Building(models.Model):
     civic_address = models.CharField(max_length=150)
     city = models.CharField(max_length=50)
     province = models.CharField(max_length=50)
-    
+
     latitude = models.FloatField()
     longitude = models.FloatField()
-    
+
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = slugify(self.name)  # Newly created object, so set slug

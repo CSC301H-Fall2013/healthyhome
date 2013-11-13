@@ -1,11 +1,11 @@
 import urllib2  # Open URLs in python
 import json     # Encode and Decode JSON
 
-from django.views.generic import ListView
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import redirect, render
 
 from complaints.models import Building, Complaint
 from complaints.forms import ComplaintForm
+
 
 def report(request):
     # sticks in a POST or renders empty form
@@ -26,19 +26,21 @@ def report(request):
 
     return render(request, 'complaints/submit.html', {'form': form, 'is_invalid': is_invalid})
 
-def building(request, id):
+
+def building(request, bid):
     # sticks in a POST or renders empty form
-    selected_building = Building.objects.get(id=id)
-    complaints = Complaint.objects.filter(building_id=id)
+    selected_building = Building.objects.get(id=bid)
+    complaints = Complaint.objects.filter(building_id=bid)
     categories = {}
     for complaint in complaints:
         name = Complaint.CATEGORY_NAMES[complaint.category]
         if name in categories:
             categories[name] += 1
         else:
-            categories[name] = 1 
+            categories[name] = 1
 
-    return render(request, 'complaints/building_page.html', {'categories' : categories, 'building' : selected_building})
+    return render(request, 'complaints/building_page.html', {'categories': categories, 'building': selected_building})
+
 
 def lookup_location(data):
     """
@@ -47,7 +49,7 @@ def lookup_location(data):
     @param data:
     @return:
     """
-    address = '+'.join(str(data['address']).split())
+    address = '+'.join(str(data['civic']).split())
     city = '+'.join(str(data['city']).split())
     province = '+'.join(str(data['province']).split())
 
