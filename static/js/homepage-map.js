@@ -30,11 +30,11 @@ function onGetJSON(buildingList, bounds, map, categoryMap) {
         // set marker color base on the complaints number
         var complaintNum = building.categories.length;
         if (complaintNum >= 4) {
-            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+            marker.setIcon('http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-f20505/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/symbol_excla.png');
         } else if (complaintNum >= 2) {
-            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+            marker.setIcon('http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-eb4040/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/symbol_excla.png');
         } else {
-            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+            marker.setIcon('http://mapicons.nicolasmollet.com/wp-content/uploads/mapicons/shape-default/color-e07979/shapecolor-color/shadow-1/border-dark/symbolstyle-white/symbolshadowstyle-dark/gradient-no/symbol_excla.png');
         }
 
         google.maps.event.addListener(marker, 'click', function () {
