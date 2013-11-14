@@ -31,7 +31,7 @@ class ReportPreview(FormPreview):
 
         location_data = complaints.views.lookup_location(address, city, province)
         latitude = location_data['results'][0]['geometry']['location']['lat']
-        longitude = location_data['results'][0]['geometry']['location']['lat']
+        longitude = location_data['results'][0]['geometry']['location']['lng']
 
         if Building.objects.filter(latitude=latitude, longitude=longitude).exists():
             # If the building exists in the database.
