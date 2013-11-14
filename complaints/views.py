@@ -1,30 +1,9 @@
 import urllib2  # Open URLs in python
 import json     # Encode and Decode JSON
 
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 
 from complaints.models import Building, Complaint
-from complaints.forms import ComplaintForm
-
-
-def report(request):
-    # sticks in a POST or renders empty form
-    form = ComplaintForm(request.POST or None)
-    is_invalid = False
-
-    if form.is_valid():
-        location = lookup_location(form.cleaned_data)
-
-        if location:
-            complaint = form.save(commit=False)
-            complaint.lat = location["results"][0]["geometry"]["location"]["lat"]
-            complaint.long = location["results"][0]["geometry"]["location"]["lng"]
-            complaint.save()
-            return redirect('/building/1')
-        else:
-            is_invalid = True
-
-    return render(request, 'complaints/submit.html', {'form': form, 'is_invalid': is_invalid})
 
 
 def building(request, bid):
