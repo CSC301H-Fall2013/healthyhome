@@ -1,0 +1,60 @@
+#Storyboard
+
+
+* The user loads the home page 
+ 
+![Home](home.png)
+
+* The home page contains 4 main elements
+	1. Map
+		* The user is presented with an interactive map, which displays all the buildings that have been complainted about
+		* The map comes with standard zoom and pan controls which allow the user to interact with the map
+		* The user explores the map to see what buildings have been complained about
+	2. Category filters
+		* The user can choose to hide and show buildings that pertain to certain complaint types
+		* Each category has a checkbox. If the category is unchecked, then buildings with complaints in that category get filtered out
+	3. Building Markers
+		* A marker (pin) represents a building that has been complained about. 
+		* The color of the marker represents the severity of the building (IE, the number of complaints on it)
+		* Clicking on a marker takes the user to the building page
+	4. Navigation pane
+		* The navigation pane allows the user to jump between the different pages of the site
+		* (Currently) the pane contains links to the HOME page, and the REPORT page.
+* The user clicks on the REPORT link, and is taken to the report page.
+![Report](report2.png)
+* The report page contains 4 main elements:
+	1. Address form fields
+		* The user fills in the details of the building Address
+    2. "Address was not valid" Notification
+		* This is visible ONLY if the user clicked SUBMIT after inputting an invalid address
+	3.  Complaint Categories
+		* User checks off the issues that he/she is complaining about.
+	4. Submit button
+		* Takes the user to the preview page, so that the user can verify the complaint info
+	
+	
+![Preview](preview.png)
+
+
+* The preview/confirmation page allows the user to double check the correctness of his/her complaint. 
+* It contains 2 main elements:
+	1. The preview area
+		* The user can look over the submitted information, and check the correctness of the address by looking at the map
+	2. The submit button
+		* User clicks on the submit button, and the complaint is being submit to the server
+* The user is then taken to the page of the building he/she complained about
+
+![title](building.png)
+
+* The building page contains 4 main elements
+	1. The address information
+	2. The count of complaints in each category
+	3. Static map of the building location
+	4. Disqus comment section
+		* Any user can leave comments about the building in this section
+		* All interactions are done through the intuitive disqus interface
+		* Users can reply to each others complaints 
+		* Users can post photos
+
+![title](comments.png)
+  
