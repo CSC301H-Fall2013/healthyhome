@@ -19,8 +19,7 @@ def buildings_api(request):
         new_obj['categories'] = []
         for complaint in b.complaint_set.all():
             current_category = Complaint.CATEGORY_NAMES[complaint.category]
-            if current_category not in new_obj['categories']:
-                new_obj['categories'].append(current_category)
+            new_obj['categories'].append(current_category)
 
         data.append(new_obj)
 
