@@ -13,45 +13,47 @@ function initialize() {
     var categoryMap = {};
 
     // Get buildings from the API
-    $.getJSON('http://localhost:8000/api/v1/buildings', function( buildingList ) {
-        //Place buildings on the map
-        buildingList.forEach(function (building) {
-            var latLong = new google.maps.LatLng(building.lat, building.lng);
-            bounds.extend(latLong);
-            var marker = new google.maps.Marker({
-                position: latLong,
-                map: map,
-                title: building.title
-            });
+    $.getJSON('/api/v1/buildings', function(data) {onGetJSON(data, bounds, map, categoryMap)});
+}
 
-            // set marker color base on the complaints number
-            var complaintNum = building.categories.length;
-            if (complaintNum >= 4) {
-                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-            } else if (complaintNum >= 2) {
-                 marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+function onGetJSON(buildingList, bounds, map, categoryMap) {
+    //Place buildings on the map
+    buildingList.forEach(function (building) {
+        var latLong = new google.maps.LatLng(building.lat, building.lng);
+        bounds.extend(latLong);
+        var marker = new google.maps.Marker({
+            position: latLong,
+            map: map,
+            title: building.title
+        });
+
+        // set marker color base on the complaints number
+        var complaintNum = building.categories.length;
+        if (complaintNum >= 4) {
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+        } else if (complaintNum >= 2) {
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+        } else {
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+        }
+
+        google.maps.event.addListener(marker, 'click', function () {
+            window.location = "/building/" + building.id;
+        });
+        building.categories.forEach(function(category) {
+            if(categoryMap[category]) {
+                categoryMap[category].push(marker);
             } else {
-                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+                categoryMap[category] = [marker];
             }
-
-            google.maps.event.addListener(marker, 'click', function () {
-                window.location = "/building/" + building.id;
-            });
-            building.categories.forEach(function(category) {
-                if(categoryMap[category]) {
-                    categoryMap[category].push(marker);
-                } else {
-                    categoryMap[category] = [marker];
-                }
-            });
         });
     });
     // Create the container for checkboxes
     var categoryContainer = $('<div/>', {
-            id: 'categoryContainer',
-            label: "Selectors",
-            'class': 'item gradient rounded shadow'
-        }).appendTo('#map-canvas');
+        id: 'categoryContainer',
+        label: "Selectors",
+        'class': 'item gradient rounded shadow'
+    }).appendTo('#map-canvas');
 
     //Create category filter for each category
     Object.keys(categoryMap).forEach(function(category) {
