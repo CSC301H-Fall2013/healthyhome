@@ -25,7 +25,9 @@
                     </div>
                     <div class="large-9 columns">
                         {% for field in form.fieldsets.complaints %}
-                            <span class="complaint-preview-complaint">{{ field.label }}</span>
+                            {% if field.data %}
+                                <span class="complaint-preview-complaint">{{ field.label }}</span>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>
