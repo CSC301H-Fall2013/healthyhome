@@ -30,11 +30,11 @@ function onGetJSON(buildingList, bounds, map, categoryMap) {
         // set marker color base on the complaints number
         var complaintNum = building.categories.length;
         if (complaintNum >= 4) {
-            marker.setIcon('http://i.imgur.com/nK9xkTl.png');
+            marker.setIcon('http://i.imgur.com/6s7buda.png');
         } else if (complaintNum >= 2) {
-            marker.setIcon('http://i.imgur.com/FpZwnaI.png');
+            marker.setIcon('http://i.imgur.com/PYNWdZn.png');
         } else {
-            marker.setIcon('http://i.imgur.com/7JbSL2K.png');
+            marker.setIcon('http://i.imgur.com/vErCcnm.png');
         }
 
         google.maps.event.addListener(marker, 'click', function () {
