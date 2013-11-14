@@ -65,7 +65,7 @@ class Building(models.Model):
         super(Building, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return '/building/{0}/{1}/'.format(self.id, self.slug)
+        return '/building/{0}'.format(self.id)
 
     def __unicode__(self):
         return self.name

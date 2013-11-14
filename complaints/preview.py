@@ -57,4 +57,4 @@ class ReportPreview(FormPreview):
                 complaint = Complaint(category=conversion[category], building_id=building.id)
                 complaint.save()
 
-        return HttpResponseRedirect('/building/1')
+        return HttpResponseRedirect(building.get_absolute_url())
