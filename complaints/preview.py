@@ -1,6 +1,6 @@
 from django.contrib.formtools.preview import FormPreview
 from django.http import HttpResponseRedirect
-from complaints.models import Building
+from complaints.models import Building, Complaint
 import complaints.views
 
 
@@ -33,20 +33,28 @@ class ReportPreview(FormPreview):
         latitude = location_data['results'][0]['geometry']['location']['lat']
         longitude = location_data['results'][0]['geometry']['location']['lat']
 
-        if False:
-            # If the building exists
-            building = None
+        if Building.objects.filter(latitude=latitude, longitude=longitude).exists():
+            # If the building exists in the database.
+            building = Building.objects.get(latitude=latitude, longitude=longitude)
         else:
-            pass
             # Create a building.
-            #civic_address =
-            #city =
-            #province =
-            #building = Building(name=civic_address, civic_address=civic_address, city=city, province=province,
-            #                    latitude=latitude, longitude=longitude)
-            #building.save()
+            civic_address = location_data['results'][0]['address_components'][0]['long_name']
+            civic_address += ' '
+            civic_address += location_data['results'][0]['address_components'][1]['long_name']
+
+            city = location_data['results'][0]['address_components'][4]['long_name']
+            province = location_data['results'][0]['address_components'][6]['long_name']
+
+            building = Building(name=civic_address, civic_address=civic_address, city=city, province=province,
+                                latitude=latitude, longitude=longitude)
+            building.save()
+
+        conversion = {'bed_bugs': 'BB', 'cockroaches': 'CR', 'mice': 'MI', 'heating': 'HE', 'plumbing': 'PB',
+                      'elevator': 'EV', 'repair_order': 'RO', 'mold': 'MO', 'other': 'OT'}
+
         for c_type, value in cleaned_data.items:
             if value:
-                c_type.upper()
-        print cleaned_data
+                complaint = Complaint(complaint=conversion[c_type], building_id=building.id)
+                complaint.save()
+
         return HttpResponseRedirect('/building/1')
