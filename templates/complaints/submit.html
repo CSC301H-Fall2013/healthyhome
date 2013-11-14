@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% if is_invalid %}
+{% if form.non_field_errors %}
     <div class="row">
         <div data-alert class="alert-box alert">
-            Your address was not valid. Please try again.
+            {{ form.non_field_errors }}
             <a href="#" class="close">&times;</a>
         </div>
     </div>

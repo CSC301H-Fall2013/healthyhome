@@ -1,8 +1,6 @@
 from django.contrib.formtools.preview import FormPreview
 from django.http import HttpResponseRedirect
 
-__author__ = 'Noel'
-
 
 class ReportPreview(FormPreview):
     preview_template = 'complaints/preview.html'
