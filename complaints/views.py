@@ -4,6 +4,38 @@ import json     # Encode and Decode JSON
 from django.shortcuts import render
 
 from complaints.models import Building, Complaint
+from tastypie.serializers import Serializer
+from django.http import HttpResponse
+
+serializer = Serializer()
+
+
+def serialize_queryset(queryset):
+    result = []
+
+    for obj in queryset:
+        new_obj = {}
+        new_obj['lat'] = obj.latitude
+        new_obj['lng'] = obj.longitude
+        new_obj['title'] = obj.name
+        new_obj['id'] = obj.id
+        new_obj['categories'] = []
+        for complaint in obj.complaints.all():
+            current_category = Complaint.CATEGORY_NAMES[complaint.category]
+            if current_category not in new_obj['categories']:
+                new_obj['categories'].append(current_category)
+
+        result.append(new_obj)
+    return result
+
+
+def buildings_api(request):
+    queryset = Building.objects.all()
+    data = serialize_queryset(queryset)
+
+    # serialize and return response
+    data = serializer.serialize(data)
+    return HttpResponse(data, mimetype='application/json')
 
 
 def building(request, bid):

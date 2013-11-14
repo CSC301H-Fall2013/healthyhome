@@ -62,11 +62,9 @@ class ComplaintTestCase(TestCase):
         """
         try:
             Complaint.objects.create(building_id=1, category='IN')
-            invalid_category = False    # Code should never reach this point
+            self.assertTrue(False)    # Code should never reach this point
         except:
-            invalid_category = True     # Test if code throws exception
-
-        self.assertTrue(invalid_category)
+            self.assertTrue(True)     # Test if code throws exception
 
     def test_invalid_bid(self):
         """
