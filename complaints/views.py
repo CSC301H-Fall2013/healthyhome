@@ -42,16 +42,16 @@ def building(request, bid):
     return render(request, 'complaints/building_page.html', {'categories': categories, 'building': selected_building})
 
 
-def lookup_location(data):
+def lookup_location(address, city, province):
     """
     Return the location of the address specified in data as a JSON object. If the address
     is invalid, return the empty string.
-    @param data:
     @return:
     """
-    address = '+'.join(str(data['civic']).split())
-    city = '+'.join(str(data['city']).split())
-    province = '+'.join(str(data['province']).split())
+    print address, city, province
+    address = '+'.join(address.split())
+    city = '+'.join(city.split())
+    province = '+'.join(province.split())
 
     result = urllib2.urlopen(
         'http://maps.googleapis.com/maps/api/geocode/json?address=' +

@@ -109,11 +109,15 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 ROOT_URLCONF = 'healthyhome.urls'
+
+# Used for Debug Toolbar
+INTERNAL_IPS = ('127.0.0.1',)
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'healthyhome.wsgi.application'
@@ -141,6 +145,8 @@ INSTALLED_APPS = (
     'tastypie',
     # Forms
     'form_utils',
+    # Debug Toolbar
+    'debug_toolbar',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

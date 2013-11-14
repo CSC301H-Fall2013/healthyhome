@@ -1,11 +1,12 @@
-import urllib2
-import json
 from django import forms
 
 from form_utils.forms import BetterForm
 
 
 # This specifies the fields that are in the complaint form
+import complaints.views
+
+
 class ComplaintForm(BetterForm):
     # Group fields into fieldsets.
     class Meta:
@@ -29,6 +30,10 @@ class ComplaintForm(BetterForm):
     mold = forms.BooleanField(required=False)
     other = forms.BooleanField(required=False)
 
+    def __init__(self, *args, **kwargs):
+        self.location_data = None
+        super(ComplaintForm, self).__init__(*args, **kwargs)
+
     def clean(self):
         """
         Hook for doing any extra form-wide cleaning after Field.clean() been
@@ -43,35 +48,17 @@ class ComplaintForm(BetterForm):
         province = cleaned_data.get('province')
 
         if address and city and province:
-            location = lookup_location(address, city, province)
-            print location
+            self.location_data = complaints.views.lookup_location(address, city, province)
 
-            if location:
-                latitude = location["results"][0]["geometry"]["location"]["lat"]
-                longitude = location["results"][0]["geometry"]["location"]["lng"]
-            else:
-                raise forms.ValidationError("Address was not valid.")
+            if not (cleaned_data.get('bed_bugs') or cleaned_data.get('cockroaches') or
+                    cleaned_data.get('mice') or cleaned_data.get('heating') or
+                    cleaned_data.get('plumbing') or cleaned_data.get('elevator') or
+                    cleaned_data.get('repair_order') or cleaned_data.get('mold') or
+                    cleaned_data.get('other')):
+                raise forms.ValidationError('At least one complaint needs to be selected.')
+
+            if not self.location_data:
+                raise forms.ValidationError('Address was not valid.')
 
         return cleaned_data
-
-
-def lookup_location(address, city, province):
-    """
-    Return the location of the address specified in data as a JSON object. If the address
-    is invalid, return the empty string.
-    @return:
-    """
-    print address, city, province
-    address = '+'.join(address.split())
-    city = '+'.join(city.split())
-    province = '+'.join(province.split())
-
-    result = urllib2.urlopen(
-        'http://maps.googleapis.com/maps/api/geocode/json?address=' +
-        address + ',+' + city + ',+' + province + '&sensor=true')
-    result = json.loads(result.read())
-
-    if result['status'] == 'ZERO_RESULTS':
-        result = ''
-    return result
 

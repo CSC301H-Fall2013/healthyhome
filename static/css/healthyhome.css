@@ -7,6 +7,30 @@ form .form-submit {
     text-align: center;
 }
 
+section.complaint-section {
+	padding: 20px 0;
+}
+
+section.complaint-section h3 {
+	color: #333333;
+	padding-bottom: 10px;
+}
+
+section div.complaint-preview-detail {
+	padding-bottom: 10px;
+}
+
+span.complaint-preview-label {
+	color: #333;
+}
+
+span.complaint-preview-complaint {
+	background-color: #ddd;
+	padding: 2px 5px;
+	margin: 2px 5px;
+	display: block;
+	float: left;
+}
 
 /* Maps */
 #map-canvas {

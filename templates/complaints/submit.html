@@ -12,7 +12,7 @@
 
 <form class="large-6 large-offset-3 columns custom" action="" method="post">
     {% csrf_token %}
-    <section class="row complaint-address">
+    <section class="row complaint-address complaint-section">
         <h3>Where is your home?</h3>
 
         {% for field in form.fieldsets.address %}
@@ -40,7 +40,7 @@
         {% endfor %}
     </section>
 
-    <section class="row complaint-types">
+    <section class="row complaint-types complaint-section">
         <h3>What problems are you having?</h3>
 
         <div class="large-6 columns">

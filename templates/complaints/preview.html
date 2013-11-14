@@ -1,28 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class="large-12 columns">
+        <section class="row complaint-preview complaint-section">
+            <h3>Confirm your complaint</h3>
+            <div class="large-6 columns complaint-preview-map">
+                <img class="float right" src="http://maps.googleapis.com/maps/api/staticmap?center={{ latitude }},{{ longitude}}&zoom=16&size=400x400&markers={{ latitude }},{{ longitude }}&sensor=false"/>
+            </div>
+            <div class="large-6 columns complaint-preview-information">
+            {% for field in form.fieldsets.address %}
+                {# The field. #}
+                <div class="row complaint-preview-detail">
+                    <div class="large-3 columns">
+                       <span class="complaint-preview-label">{{ field.label }}</span>
+                    </div>
+                    <div class="large-9 columns">
+                        <span class="complaint-preview-address">{{ field.data }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+                <div class="row complaint-preview-detail">
+                    <div class="large-3 columns">
+                        <span class="complaint-preview-label">Complaints</span>
+                    </div>
+                    <div class="large-9 columns">
+                        {% for field in form.fieldsets.complaints %}
+                            <span class="complaint-preview-complaint">{{ field.label }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <h1>Preview your submission</h1>
-
-    <img class="float right" src="http://maps.googleapis.com/maps/api/staticmap?center={{ building.latitude }},{{ building.longitude}}&zoom=16&size=400x400&markers={{ building.latitude }},{{ building.longitude }}&sensor=false"/>
-
-    <table>
-        {% for field in form %}
-            <tr>
-                <th>{{ field.label }}:</th>
-                <td>{{ field.data }}</td>
-            </tr>
-        {% endfor %}
-    </table>
-
-    <p>Security hash: {{ hash_value }}</p>
-
-    <form action="" method="post">{% csrf_token %}
-        {% for field in form %}{{ field.as_hidden }}
-        {% endfor %}
-        <input type="hidden" name="{{ stage_field }}" value="2" />
-        <input type="hidden" name="{{ hash_field }}" value="{{ hash_value }}" />
-        <p><input class="button" type="submit" value="Confirm" /></p>
-    </form>
-
+        <section class="row complaint-section">
+            <form action="" method="post">{% csrf_token %}
+                {% for field in form %}{{ field.as_hidden }}
+                {% endfor %}
+                <input type="hidden" name="{{ stage_field }}" value="2" />
+                <input type="hidden" name="{{ hash_field }}" value="{{ hash_value }}" />
+                <div class="row form-submit">
+                    <input class="button" type="submit" value="Confirm" />
+                </div>
+            </form>
+        </section>
+    </div>
 {% endblock %}
