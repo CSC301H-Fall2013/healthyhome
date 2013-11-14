@@ -52,9 +52,9 @@ class ReportPreview(FormPreview):
         conversion = {'bed_bugs': 'BB', 'cockroaches': 'CR', 'mice': 'MI', 'heating': 'HE', 'plumbing': 'PB',
                       'elevator': 'EV', 'repair_order': 'RO', 'mold': 'MO', 'other': 'OT'}
 
-        for c_type, value in cleaned_data.items:
+        for category, value in cleaned_data.items():
             if value:
-                complaint = Complaint(complaint=conversion[c_type], building_id=building.id)
+                complaint = Complaint(category=conversion[category], building_id=building.id)
                 complaint.save()
 
         return HttpResponseRedirect('/building/1')
