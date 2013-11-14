@@ -3,7 +3,8 @@ from complaints.models import Complaint, Building
 import json
 import urllib2
 
-class ComplaintTestCase(TestCase):
+
+class ApiTestCase(TestCase):
     """ Tests the API for Buildings.
     """
     def setUp(self):
