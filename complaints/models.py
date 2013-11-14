@@ -37,7 +37,7 @@ class Complaint(models.Model):
         (OTHER, CATEGORY_NAMES[OTHER])
     )
 
-    building = models.ForeignKey('Building', related_name='complaints')
+    building = models.ForeignKey('Building')
     category = models.CharField(max_length=2, choices=CATEGORY_CHOICES)
     timestamp = models.DateTimeField(auto_now_add=True)
 
