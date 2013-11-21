@@ -141,8 +141,6 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     # Healthyhome
     'complaints',
-    # API
-    'tastypie',
     # Forms
     'form_utils',
     # Debug Toolbar
