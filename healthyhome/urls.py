@@ -14,6 +14,9 @@ urlpatterns = patterns('',
    #Index
    url(r'^$', TemplateView.as_view(template_name='index.html'), name="index"),
 
+   #Help
+   url(r'^help/', TemplateView.as_view(template_name='help.html'), name="help"),
+
    # API
    url(r'^api/v1/buildings/$', 'complaints.views.buildings_api'),
 
